@@ -1,0 +1,167 @@
+
+
+===== 2026-03-23 15:33:29 =====
+userId: 45 | shopSource: mshop
+cartItems: [{"product_id":9,"qty":1,"price":799,"bv":799,"name":"Omega-3 Fish Oil Gold","image_url":"https:\/\/geinca.com\/Mfils\/uploads\/products\/prod_69b7cd61957fd4.25678567.png","cat":"vitamins"},{"product_id":12,"qty":1,"price":449,"bv":449,"name":"SlimFire Detox Tea","image_url":"https:\/\/images.unsplash.com\/photo-1556679343-c7306c1976bc?w=600&q=80","cat":"weightloss"}]
+POST[full_name]: Jayashree Patra
+POST[phone]: 9090398108
+POST[address1]: jaganath nagar, bhubaneswar
+POST[city]: Bhubaneswar
+POST[state]: Odisha
+POST[pincode]: 751006
+Validation: PASSED
+Item — productId:0 qty:1
+SKIP — invalid productId
+Item — productId:0 qty:1
+SKIP — invalid productId
+FAILED: no orders placed. Error: 
+
+
+===== 2026-03-23 15:33:36 =====
+userId: 45 | shopSource: mshop
+cartItems: [{"product_id":9,"qty":1,"price":799,"bv":799,"name":"Omega-3 Fish Oil Gold","image_url":"https:\/\/geinca.com\/Mfils\/uploads\/products\/prod_69b7cd61957fd4.25678567.png","cat":"vitamins"},{"product_id":12,"qty":1,"price":449,"bv":449,"name":"SlimFire Detox Tea","image_url":"https:\/\/images.unsplash.com\/photo-1556679343-c7306c1976bc?w=600&q=80","cat":"weightloss"}]
+POST[full_name]: Jayashree Patra
+POST[phone]: 9090398108
+POST[address1]: jaganath nagar, bhubaneswar
+POST[city]: Bhubaneswar
+POST[state]: Odisha
+POST[pincode]: 751006
+Validation: PASSED
+Item — productId:0 qty:1
+SKIP — invalid productId
+Item — productId:0 qty:1
+SKIP — invalid productId
+FAILED: no orders placed. Error: 
+
+
+===== 2026-03-23 15:33:42 =====
+userId: 45 | shopSource: mshop
+cartItems: [{"product_id":9,"qty":1,"price":799,"bv":799,"name":"Omega-3 Fish Oil Gold","image_url":"https:\/\/geinca.com\/Mfils\/uploads\/products\/prod_69b7cd61957fd4.25678567.png","cat":"vitamins"},{"product_id":12,"qty":1,"price":449,"bv":449,"name":"SlimFire Detox Tea","image_url":"https:\/\/images.unsplash.com\/photo-1556679343-c7306c1976bc?w=600&q=80","cat":"weightloss"}]
+POST[full_name]: Jayashree Patra
+POST[phone]: 8637234341
+POST[address1]: jaganath nagar, bhubaneswar
+POST[city]: Bhubaneswar
+POST[state]: Odisha
+POST[pincode]: 751006
+Validation: PASSED
+Item — productId:0 qty:1
+SKIP — invalid productId
+Item — productId:0 qty:1
+SKIP — invalid productId
+FAILED: no orders placed. Error: 
+
+
+===== 2026-03-23 15:33:58 =====
+userId: 45 | shopSource: mshop
+cartItems: [{"product_id":9,"qty":1,"price":799,"bv":799,"name":"Omega-3 Fish Oil Gold","image_url":"https:\/\/geinca.com\/Mfils\/uploads\/products\/prod_69b7cd61957fd4.25678567.png","cat":"vitamins"},{"product_id":12,"qty":1,"price":449,"bv":449,"name":"SlimFire Detox Tea","image_url":"https:\/\/images.unsplash.com\/photo-1556679343-c7306c1976bc?w=600&q=80","cat":"weightloss"}]
+POST[full_name]: Jayashree Patra
+POST[phone]: 8637234341
+POST[address1]: jaganath nagar, bhubaneswar
+POST[city]: Bhubaneswar
+POST[state]: Odisha
+POST[pincode]: 751006
+Validation: PASSED
+Item — productId:0 qty:1
+SKIP — invalid productId
+Item — productId:0 qty:1
+SKIP — invalid productId
+FAILED: no orders placed. Error: 
+
+
+===== 2026-03-23 15:34:07 =====
+userId: 45 | shopSource: mshop
+cartItems: [{"product_id":9,"qty":1,"price":799,"bv":799,"name":"Omega-3 Fish Oil Gold","image_url":"https:\/\/geinca.com\/Mfils\/uploads\/products\/prod_69b7cd61957fd4.25678567.png","cat":"vitamins"},{"product_id":12,"qty":1,"price":449,"bv":449,"name":"SlimFire Detox Tea","image_url":"https:\/\/images.unsplash.com\/photo-1556679343-c7306c1976bc?w=600&q=80","cat":"weightloss"}]
+POST[full_name]: Jayashree Patra
+POST[phone]: 8637234341
+POST[address1]: jaganath nagar, bhubaneswar
+POST[city]: Bhubaneswar
+POST[state]: Odisha
+POST[pincode]: 751006
+Validation: PASSED
+Item — productId:0 qty:1
+SKIP — invalid productId
+Item — productId:0 qty:1
+SKIP — invalid productId
+FAILED: no orders placed. Error: 
+
+
+===== 2026-03-23 15:42:53 =====
+userId: 45 | shopSource: mshop
+cartItems: [{"product_id":9,"qty":1,"price":799,"bv":799,"name":"Omega-3 Fish Oil Gold","image_url":"https:\/\/geinca.com\/Mfils\/uploads\/products\/prod_69b7cd61957fd4.25678567.png","cat":"vitamins"},{"product_id":12,"qty":1,"price":449,"bv":449,"name":"SlimFire Detox Tea","image_url":"https:\/\/images.unsplash.com\/photo-1556679343-c7306c1976bc?w=600&q=80","cat":"weightloss"}]
+POST[full_name]: Jayashree Patra
+POST[phone]: 8637234341
+POST[address1]: jaganath nagar, bhubaneswar
+POST[city]: Bhubaneswar
+POST[state]: Odisha
+POST[pincode]: 751006
+Validation: PASSED
+Item — productId:9 qty:1
+Result: {"success":true,"message":"\u2705 Purchase successful! \u20b9799.00 order placed.","order_id":48,"amount":799,"bv":799,"comm_log":[],"skipped":[]}
+delivery_address saved for order #48
+Item — productId:12 qty:1
+Result: {"success":true,"message":"\u2705 Purchase successful! \u20b9449.00 order placed.","order_id":49,"amount":449,"bv":449,"comm_log":[],"skipped":[]}
+delivery_address saved for order #49
+SUCCESS: orders=[48,49]
+
+
+===== 2026-03-23 15:43:53 =====
+userId: 45 | shopSource: mshop
+cartItems: [{"product_id":11,"qty":1,"price":399,"bv":400,"name":"Triphala Herbal Blend","image_url":"https:\/\/geinca.com\/Mfils\/uploads\/products\/prod_69b7d01e210028.03827107.png","cat":"ayurvedic"}]
+POST[full_name]: Jayashree Patra
+POST[phone]: 8637234341
+POST[address1]: jaganath nagar, bhubaneswar
+POST[city]: Bhubaneswar
+POST[state]: Odisha
+POST[pincode]: 751006
+Validation: PASSED
+Item — productId:11 qty:1
+Result: {"success":true,"message":"\u2705 Purchase successful! \u20b9399.00 order placed.","order_id":50,"amount":399,"bv":400,"comm_log":[],"skipped":[]}
+delivery_address saved for order #50
+SUCCESS: orders=[50]
+
+
+===== 2026-03-23 15:47:58 =====
+userId: 45 | shopSource: mshop
+cartItems: [{"product_id":11,"qty":1,"price":399,"bv":400,"name":"Triphala Herbal Blend","image_url":"https:\/\/geinca.com\/Mfils\/uploads\/products\/prod_69b7d01e210028.03827107.png","cat":"ayurvedic"}]
+POST[full_name]: Jayashree Patra
+POST[phone]: 8637234341
+POST[address1]: jaganath nagar, bhubaneswar
+POST[city]: Bhubaneswar
+POST[state]: Odisha
+POST[pincode]: 751006
+Validation: PASSED
+Item — productId:11 qty:1
+Result: {"success":true,"message":"\u2705 Purchase successful! \u20b9399.00 order placed.","order_id":51,"amount":399,"bv":400,"comm_log":[],"skipped":[]}
+delivery_address saved for order #51
+SUCCESS: orders=[51]
+
+
+===== 2026-03-23 15:48:05 =====
+userId: 45 | shopSource: mshop
+cartItems: [{"product_id":11,"qty":1,"price":399,"bv":400,"name":"Triphala Herbal Blend","image_url":"https:\/\/geinca.com\/Mfils\/uploads\/products\/prod_69b7d01e210028.03827107.png","cat":"ayurvedic"}]
+POST[full_name]: Jayashree Patra
+POST[phone]: 8637234341
+POST[address1]: jaganath nagar, bhubaneswar
+POST[city]: Bhubaneswar
+POST[state]: Odisha
+POST[pincode]: 751006
+Validation: PASSED
+Item — productId:11 qty:1
+Result: {"success":true,"message":"\u2705 Purchase successful! \u20b9399.00 order placed.","order_id":52,"amount":399,"bv":400,"comm_log":[],"skipped":[]}
+delivery_address saved for order #52
+SUCCESS: orders=[52]
+
+
+===== 2026-03-23 15:48:19 =====
+userId: 45 | shopSource: mshop
+cartItems: [{"product_id":11,"qty":1,"price":399,"bv":400,"name":"Triphala Herbal Blend","image_url":"https:\/\/geinca.com\/Mfils\/uploads\/products\/prod_69b7d01e210028.03827107.png","cat":"ayurvedic"}]
+POST[full_name]: Jayashree Patra
+POST[phone]: 8637234341
+POST[address1]: jaganath nagar, bhubaneswar
+POST[city]: Bhubaneswar
+POST[state]: Odisha
+POST[pincode]: 751006
+Validation: PASSED
+Item — productId:0 qty:1
+SKIP — invalid productId
+FAILED: no orders placed. Error: 

@@ -1,0 +1,602 @@
+/*
+ * ══════════════════════════════════════════════════════════════════
+ *  MFILLS — ANIMATION SYSTEM  v1.0
+ *  Drop-in: <link rel="stylesheet" href="/includes/animations.css">
+ *  Companion: <script src="/includes/animations.js"></script>
+ *
+ *  Respects prefers-reduced-motion throughout.
+ * ══════════════════════════════════════════════════════════════════
+ */
+
+/* ────────────────────────────────────────────────────────────────
+   0.  GLOBAL EASING TOKENS
+──────────────────────────────────────────────────────────────── */
+:root {
+  --ease-out-expo   : cubic-bezier(.16,1,.3,1);
+  --ease-out-back   : cubic-bezier(.34,1.56,.64,1);
+  --ease-out-quart  : cubic-bezier(.25,.46,.45,.94);
+  --ease-in-out-sine: cubic-bezier(.37,0,.63,1);
+  --ease-spring     : cubic-bezier(.34,1.4,.64,1);
+  --dur-fast        : 220ms;
+  --dur-mid         : 420ms;
+  --dur-slow        : 680ms;
+  --dur-xslow       : 1000ms;
+}
+
+/* ────────────────────────────────────────────────────────────────
+   1.  PAGE LOAD — HERO SEQUENCE
+   Add these classes directly in HTML (no JS needed)
+──────────────────────────────────────────────────────────────── */
+
+/* Hero tag line above heading */
+.anim-hero-tag {
+  opacity: 0;
+  transform: translateY(12px);
+  animation: mfFadeUp var(--dur-mid) var(--ease-out-expo) 80ms forwards;
+}
+
+/* Hero H1 */
+.anim-hero-h1 {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: mfFadeUp var(--dur-slow) var(--ease-out-expo) 180ms forwards;
+}
+
+/* Hero subtitle / tagline paragraph */
+.anim-hero-sub {
+  opacity: 0;
+  transform: translateY(16px);
+  animation: mfFadeUp var(--dur-slow) var(--ease-out-expo) 320ms forwards;
+}
+
+/* Hero CTA buttons row */
+.anim-hero-cta {
+  opacity: 0;
+  transform: translateY(14px);
+  animation: mfFadeUp var(--dur-mid) var(--ease-out-expo) 460ms forwards;
+}
+
+/* Hero image / illustration */
+.anim-hero-img {
+  opacity: 0;
+  transform: scale(.96) translateY(18px);
+  animation: mfScaleUp var(--dur-xslow) var(--ease-out-expo) 200ms forwards;
+}
+
+/* Hero quick-links pill row */
+.anim-hero-pills {
+  opacity: 0;
+  animation: mfFadeIn var(--dur-mid) var(--ease-out-quart) 560ms forwards;
+}
+
+/* Staggered children — add .anim-stagger-parent, each child gets delay */
+.anim-stagger-parent > *:nth-child(1)  { animation-delay:  80ms !important; }
+.anim-stagger-parent > *:nth-child(2)  { animation-delay: 160ms !important; }
+.anim-stagger-parent > *:nth-child(3)  { animation-delay: 240ms !important; }
+.anim-stagger-parent > *:nth-child(4)  { animation-delay: 320ms !important; }
+.anim-stagger-parent > *:nth-child(5)  { animation-delay: 400ms !important; }
+.anim-stagger-parent > *:nth-child(6)  { animation-delay: 480ms !important; }
+.anim-stagger-parent > *:nth-child(7)  { animation-delay: 560ms !important; }
+.anim-stagger-parent > *:nth-child(8)  { animation-delay: 640ms !important; }
+
+/* ────────────────────────────────────────────────────────────────
+   2.  SCROLL REVEAL — base class .rv (already used sitewide)
+   JS in animations.js promotes .rv → .rv.on
+   Variants stack on top of .rv
+──────────────────────────────────────────────────────────────── */
+
+/* Default: fade up */
+.rv {
+  opacity: 0;
+  transform: translateY(22px);
+  transition:
+    opacity  var(--dur-slow) var(--ease-out-expo),
+    transform var(--dur-slow) var(--ease-out-expo);
+}
+.rv.on {
+  opacity: 1;
+  transform: none;
+}
+
+/* Fade in only (no translate) */
+.rv.rv-fade {
+  transform: none;
+}
+
+/* Slide from left */
+.rv.rv-left {
+  transform: translateX(-32px);
+}
+.rv.rv-left.on { transform: none; }
+
+/* Slide from right */
+.rv.rv-right {
+  transform: translateX(32px);
+}
+.rv.rv-right.on { transform: none; }
+
+/* Scale up */
+.rv.rv-scale {
+  transform: scale(.94);
+}
+.rv.rv-scale.on { transform: none; }
+
+/* Slower reveal for big sections */
+.rv.rv-slow {
+  transition-duration: var(--dur-xslow);
+}
+
+/* Stagger for grid children — parent gets .rv-stagger-grid */
+.rv-stagger-grid > * {
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity  var(--dur-mid) var(--ease-out-expo),
+    transform var(--dur-mid) var(--ease-out-expo);
+}
+.rv-stagger-grid.on > *:nth-child(1)  { opacity:1; transform:none; transition-delay:  0ms; }
+.rv-stagger-grid.on > *:nth-child(2)  { opacity:1; transform:none; transition-delay: 70ms; }
+.rv-stagger-grid.on > *:nth-child(3)  { opacity:1; transform:none; transition-delay:140ms; }
+.rv-stagger-grid.on > *:nth-child(4)  { opacity:1; transform:none; transition-delay:210ms; }
+.rv-stagger-grid.on > *:nth-child(5)  { opacity:1; transform:none; transition-delay:280ms; }
+.rv-stagger-grid.on > *:nth-child(6)  { opacity:1; transform:none; transition-delay:350ms; }
+.rv-stagger-grid.on > *:nth-child(7)  { opacity:1; transform:none; transition-delay:420ms; }
+.rv-stagger-grid.on > *:nth-child(8)  { opacity:1; transform:none; transition-delay:490ms; }
+
+/* ────────────────────────────────────────────────────────────────
+   3.  NAVBAR — scroll shrink & shadow lift
+   JS adds .nav-scrolled to <nav> elements after 40px scroll
+──────────────────────────────────────────────────────────────── */
+
+/* Guest navbar */
+.nav-landing {
+  transition:
+    height     var(--dur-mid) var(--ease-out-quart),
+    box-shadow var(--dur-mid) var(--ease-out-quart),
+    background var(--dur-mid) var(--ease-out-quart);
+}
+.nav-landing.nav-scrolled {
+  height: 58px !important;
+  box-shadow: 0 2px 20px rgba(26,59,34,.13), 0 1px 0 rgba(26,59,34,.06) !important;
+  background: rgba(255,255,255,.99) !important;
+}
+
+/* Dashboard navbar */
+.nav-dashboard {
+  transition:
+    height     var(--dur-mid) var(--ease-out-quart),
+    box-shadow var(--dur-mid) var(--ease-out-quart);
+}
+.nav-dashboard.nav-scrolled {
+  height: 58px !important;
+  box-shadow: 0 1px 0 rgba(200,146,42,.22), 0 6px 28px rgba(0,0,0,.55) !important;
+}
+
+/* Logo shrink on scroll */
+.nav-landing.nav-scrolled .nl-brand-logo,
+.nav-dashboard.nav-scrolled .nd-brand-logo {
+  transition: height var(--dur-mid) var(--ease-out-quart),
+              max-height var(--dur-mid) var(--ease-out-quart);
+  max-height: 44px !important;
+}
+
+/* ────────────────────────────────────────────────────────────────
+   4.  CARD HOVER LIFTS
+   Replace plain hover transform with physics-spring feel
+──────────────────────────────────────────────────────────────── */
+
+/* Generic card */
+.card,
+.stat-tile,
+.product-card,
+.blog-card,
+.ct-info-card,
+.ct-support-card,
+.ct-partner-card,
+.about-value-card,
+.vmp-card,
+.grv-policy-card,
+.why-item,
+.mbp-role-item,
+.legal-card,
+.about-commit-item,
+.bd-related-card,
+.club-card {
+  transition:
+    transform  var(--dur-mid) var(--ease-out-back),
+    box-shadow var(--dur-mid) var(--ease-out-quart),
+    border-color var(--dur-fast) linear !important;
+}
+
+.card:hover,
+.stat-tile:hover,
+.product-card:hover,
+.blog-card:hover,
+.ct-info-card:hover,
+.ct-support-card:hover,
+.ct-partner-card:hover,
+.about-value-card:hover,
+.vmp-card:hover,
+.grv-policy-card:hover,
+.why-item:hover,
+.mbp-role-item:hover,
+.legal-card:hover,
+.bd-related-card:hover,
+.club-card:hover {
+  transform: translateY(-5px) !important;
+  box-shadow: 0 16px 44px rgba(26,59,34,.13) !important;
+}
+
+/* Commit items — subtler lift */
+.about-commit-item:hover {
+  transform: translateY(-3px) !important;
+  box-shadow: 0 8px 22px rgba(26,59,34,.09) !important;
+}
+
+/* ────────────────────────────────────────────────────────────────
+   5.  BUTTON MICRO-INTERACTIONS
+──────────────────────────────────────────────────────────────── */
+
+.btn,
+.btn-primary, .btn-gold, .btn-outline,
+.btn-jade, .btn-dark, .btn-gld, .btn-ghost,
+.grv-submit, .ct-submit, .blog-nl-btn,
+.mf-ft-nl-btn, .grv-track-btn,
+.ct-support-cta, .about-cta-btns a,
+.glm-login, .nd-wallet {
+  transition:
+    background  var(--dur-fast) var(--ease-out-quart),
+    box-shadow  var(--dur-fast) var(--ease-out-quart),
+    transform   var(--dur-fast) var(--ease-out-back),
+    color       var(--dur-fast) linear,
+    border-color var(--dur-fast) linear !important;
+}
+
+.btn:active,
+.btn-primary:active, .btn-gold:active, .btn-outline:active,
+.grv-submit:active, .ct-submit:active,
+.ct-support-cta:active, .about-cta-btns a:active {
+  transform: scale(.97) translateY(1px) !important;
+  box-shadow: none !important;
+}
+
+/* CTA primary buttons — lift on hover */
+.btn-primary:hover,
+.btn-jade:hover,
+.btn-gold:hover,
+.btn-gld:hover,
+.grv-submit:hover,
+.ct-submit:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 20px rgba(26,59,34,.25) !important;
+}
+
+/* ────────────────────────────────────────────────────────────────
+   6.  NAVIGATION LINKS — underline slide
+   (Already in header.php but override ensures smooth transition)
+──────────────────────────────────────────────────────────────── */
+
+.nl-links a,
+.nd-nav .nd-link,
+.about-sidenav-wrap a,
+.grv-sidenav a,
+.ct-sidenav a,
+.blog-filter-tab,
+.bd-breadcrumb a {
+  transition:
+    color        var(--dur-fast) var(--ease-out-quart),
+    border-color var(--dur-fast) var(--ease-out-quart),
+    background   var(--dur-fast) var(--ease-out-quart) !important;
+}
+
+/* ────────────────────────────────────────────────────────────────
+   7.  FORM INPUTS — focus ring animation
+──────────────────────────────────────────────────────────────── */
+
+.form-control,
+.grv-input, .grv-select, .grv-textarea,
+.ct-input, .ct-select, .ct-textarea,
+.grv-track-input,
+.mf-ft-nl-input, .blog-nl-input {
+  transition:
+    border-color var(--dur-fast) var(--ease-out-quart),
+    box-shadow   var(--dur-fast) var(--ease-out-quart),
+    background   var(--dur-fast) var(--ease-out-quart) !important;
+}
+
+/* Focus: expand ring from centre */
+.form-control:focus,
+.grv-input:focus, .grv-select:focus, .grv-textarea:focus,
+.ct-input:focus, .ct-select:focus, .ct-textarea:focus,
+.grv-track-input:focus {
+  animation: mfFocusRing var(--dur-mid) var(--ease-out-back) forwards;
+}
+
+@keyframes mfFocusRing {
+  from { box-shadow: 0 0 0 0 rgba(26,59,34,.0); }
+  to   { box-shadow: 0 0 0 3px rgba(26,59,34,.11); }
+}
+
+/* ────────────────────────────────────────────────────────────────
+   8.  IMAGE HOVER ZOOM (product cards, blog cards, mega menu)
+──────────────────────────────────────────────────────────────── */
+
+.product-card img,
+.blog-card-img img,
+.nl-mega-img img,
+.bd-hero-img,
+.bd-related-img,
+.blog-featured-img img {
+  transition: transform var(--dur-slow) var(--ease-out-quart) !important;
+  will-change: transform;
+}
+
+.product-card:hover img   { transform: scale(1.07) !important; }
+.blog-card:hover .blog-card-img img { transform: scale(1.06) !important; }
+.nl-mega-card:hover .nl-mega-img img { transform: scale(1.05) !important; }
+.blog-featured:hover .blog-featured-img img { transform: scale(1.04) !important; }
+.bd-related-card:hover .bd-related-img { transform: scale(1.04) !important; }
+
+/* ────────────────────────────────────────────────────────────────
+   9.  FOOTER LINK HOVER — indent slide
+──────────────────────────────────────────────────────────────── */
+
+.mf-ft-col-links li a {
+  transition:
+    color        var(--dur-fast) var(--ease-out-quart),
+    padding-left var(--dur-fast) var(--ease-out-back) !important;
+}
+
+/* Social icon spin-lift */
+.mf-ft-social-icon {
+  transition:
+    border-color var(--dur-fast) var(--ease-out-quart),
+    color        var(--dur-fast) var(--ease-out-quart),
+    background   var(--dur-fast) var(--ease-out-quart),
+    transform    var(--dur-fast) var(--ease-out-back) !important;
+}
+.mf-ft-social-icon:hover { transform: translateY(-3px) !important; }
+
+/* ────────────────────────────────────────────────────────────────
+   10. PAGE TRANSITIONS — between-page fade
+   JS in animations.js adds .page-exit on <a> clicks,
+   new page enters with .page-enter
+──────────────────────────────────────────────────────────────── */
+
+body {
+  animation: mfPageEnter var(--dur-mid) var(--ease-out-quart) both;
+}
+
+@keyframes mfPageEnter {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* ────────────────────────────────────────────────────────────────
+   11. MODAL ANIMATIONS — GLM login modal, drawer
+──────────────────────────────────────────────────────────────── */
+
+.glm-backdrop {
+  transition: opacity var(--dur-mid) var(--ease-out-quart) !important;
+}
+.glm-box {
+  transition: transform var(--dur-mid) var(--ease-out-back) !important;
+}
+
+/* Mobile drawer — smooth translate */
+.nl-drawer {
+  transition: transform var(--dur-mid) var(--ease-out-expo) !important;
+}
+.nd-drawer {
+  transition: max-height var(--dur-mid) var(--ease-out-expo) !important;
+}
+
+/* ────────────────────────────────────────────────────────────────
+   12. STAT COUNTER ANIMATE — .anim-count elements tick up
+   JS targets [data-count] attributes
+──────────────────────────────────────────────────────────────── */
+
+[data-count] {
+  display: inline-block;
+  transition: transform var(--dur-fast) var(--ease-out-back);
+}
+
+/* ────────────────────────────────────────────────────────────────
+   13. HERO BACKGROUND PARALLAX LAYER
+   Add .anim-parallax to ::before pseudo-elements via JS class
+──────────────────────────────────────────────────────────────── */
+
+.about-hero,
+.blog-hero,
+.grv-hero,
+.ct-hero,
+.page-header {
+  overflow: hidden;
+}
+.about-hero::before,
+.blog-hero::before,
+.grv-hero::before,
+.ct-hero::before,
+.page-header::before {
+  will-change: transform;
+  transition: transform 0ms linear;
+}
+
+/* ────────────────────────────────────────────────────────────────
+   14. MEGA MENU — smooth open
+──────────────────────────────────────────────────────────────── */
+
+.nl-mega {
+  transition:
+    opacity   var(--dur-mid) var(--ease-out-quart),
+    transform var(--dur-mid) var(--ease-out-expo) !important;
+}
+
+/* ────────────────────────────────────────────────────────────────
+   15. BADGE / TAG HOVER
+──────────────────────────────────────────────────────────────── */
+
+.badge, .blog-tag, .bd-tag, .grv-step-badge, .mf-ft-badge, .mf-ft-trust-pill {
+  transition:
+    background  var(--dur-fast) var(--ease-out-quart),
+    color       var(--dur-fast) var(--ease-out-quart),
+    border-color var(--dur-fast) var(--ease-out-quart),
+    transform   var(--dur-fast) var(--ease-out-back) !important;
+}
+.mf-ft-badge:hover { transform: scale(1.04) !important; }
+
+/* ────────────────────────────────────────────────────────────────
+   16. SCROLL-TO-TOP BUTTON SPIN
+──────────────────────────────────────────────────────────────── */
+
+.mf-stt, .stt {
+  transition:
+    opacity    var(--dur-mid) var(--ease-out-quart),
+    transform  var(--dur-mid) var(--ease-out-back),
+    background var(--dur-fast) linear !important;
+}
+.mf-stt:hover, .stt:hover {
+  transform: translateY(-3px) rotate(-5deg) !important;
+}
+
+/* ────────────────────────────────────────────────────────────────
+   17.  KEYFRAME LIBRARY
+──────────────────────────────────────────────────────────────── */
+
+@keyframes mfFadeUp {
+  from { opacity: 0; transform: translateY(var(--ty, 18px)); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes mfFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes mfScaleUp {
+  from { opacity: 0; transform: scale(.95) translateY(18px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+@keyframes mfSlideLeft {
+  from { opacity: 0; transform: translateX(-24px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes mfSlideRight {
+  from { opacity: 0; transform: translateX(24px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes mfPulse {
+  0%, 100% { transform: scale(1); }
+  50%       { transform: scale(1.04); }
+}
+
+@keyframes mfShimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position:  200% 0; }
+}
+
+@keyframes mfFloat {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-8px); }
+}
+
+@keyframes mfGoldGlow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(200,146,42,0); }
+  50%       { box-shadow: 0 0 0 8px rgba(200,146,42,.15); }
+}
+
+/* Floating animation utility */
+.anim-float { animation: mfFloat 3.5s var(--ease-in-out-sine) infinite; }
+
+/* Gold pulse on wallet badge */
+.nd-wallet:not(:hover) {
+  animation: mfGoldGlow 3s var(--ease-in-out-sine) 2s infinite;
+}
+
+/* ────────────────────────────────────────────────────────────────
+   18. LOADING SKELETON SHIMMER
+   Add .anim-skeleton to placeholder elements
+──────────────────────────────────────────────────────────────── */
+
+.anim-skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--g2, #f0ece4) 25%,
+    var(--b,  #e8e4dc) 50%,
+    var(--g2, #f0ece4) 75%
+  );
+  background-size: 200% 100%;
+  animation: mfShimmer 1.6s var(--ease-in-out-sine) infinite;
+  border-radius: 6px;
+  color: transparent !important;
+}
+
+/* ────────────────────────────────────────────────────────────────
+   19. GRIEVANCE STEPPER DOTS — animate in when parent becomes .on
+──────────────────────────────────────────────────────────────── */
+
+.grv-stepper-step {
+  opacity: 0;
+  transform: translateY(10px);
+  transition:
+    opacity   var(--dur-mid) var(--ease-out-expo),
+    transform var(--dur-mid) var(--ease-out-expo);
+}
+.grv-stepper-step.done,
+.grv-stepper-step.current {
+  opacity: 1;
+  transform: none;
+}
+
+/* Stagger each stepper dot */
+.grv-stepper-step:nth-child(1) { transition-delay:  0ms; }
+.grv-stepper-step:nth-child(2) { transition-delay: 80ms; }
+.grv-stepper-step:nth-child(3) { transition-delay:160ms; }
+.grv-stepper-step:nth-child(4) { transition-delay:240ms; }
+
+/* ────────────────────────────────────────────────────────────────
+   20. BLOG READING PROGRESS BAR
+──────────────────────────────────────────────────────────────── */
+
+.bd-progress-bar {
+  transition: width .12s linear !important;
+}
+
+/* ────────────────────────────────────────────────────────────────
+   REDUCED MOTION — disable all non-essential animations
+──────────────────────────────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .rv,
+  .rv-stagger-grid > *,
+  .anim-hero-tag,
+  .anim-hero-h1,
+  .anim-hero-sub,
+  .anim-hero-cta,
+  .anim-hero-img,
+  .anim-hero-pills {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+    transition: none !important;
+  }
+
+  body { animation: none !important; }
+
+  .nd-wallet { animation: none !important; }
+  .anim-float { animation: none !important; }
+  .anim-skeleton { animation: none !important; }
+  .ct-status-dot { animation: none !important; }
+}
